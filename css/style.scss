@@ -1,0 +1,589 @@
+@charset "UTF-8";
+/*==================================
+  Reset
+==================================*/
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,img{
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    border-spacing: 0;
+}
+
+fieldset,img {
+    border: 0;
+}
+
+address,caption,cite,code,dfn,em,strong,th,var {
+    font-style: normal;
+    font-weight: normal;
+}
+
+ol,ul {
+    list-style: none;
+}
+
+caption,th {
+    text-align: center;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-size: 100%;
+}
+
+q:before,q:after {
+    content: '';
+}
+
+abbr,acronym {
+    border: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:hover,a.selected{
+    text-decoration: none;
+}
+
+/*==================================
+  Variable
+==================================*/
+$mainColor: #00993D;
+$good: #13BF57;
+$soso: $mainColor;
+$bad: #006629;
+$btnShadow: 0px 1px 2px 0px rgba(0,0,0,0.3);
+
+
+/*==================================
+  Extend
+==================================*/
+/* clear fix */
+%cf {
+  *zoom: 1;
+  &:after, &:before  {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+/* score circle */
+%score {
+  color: #fff;
+  font-size: 24px;
+  border-radius: 30px;
+  width: 60px;
+  height: 48px;
+  text-align: center;
+  padding-top: 12px;
+  float: left;
+}
+
+%weightBold {
+  font-family: "ヒラギノ角ゴ Pr6N W6", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic",sans-serif;
+}
+
+%weightNormal {
+  font-family: "ヒラギノ角ゴ Pr6N W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic",sans-serif;
+}
+
+/*==================================
+  css
+==================================*/
+body {
+  margin: 0;
+  padding: 0;
+  font-size:12px;
+  color: #4D4D4D;
+  @extend %weightNormal;
+  background-color: #F2F2F2;
+}
+a {
+  color: inherit;
+  display: block;
+}
+
+.good {
+  background-color: $good;
+}
+.soso {
+  background-color: $soso;
+}
+.bad {
+  background-color: $bad;
+}
+
+.sunny {
+  &:before {
+    font-family: FontAwesome;
+    content: "\f185";
+    color: #F39800;
+    margin-right: 7px;
+  }
+}
+.cloudy {
+  &:before {
+    font-family: FontAwesome;
+    content: "\f0c2";
+    color: #B3B3B3;
+    margin-right: 7px;
+  }
+}
+.rainy {
+  &:before {
+    font-family: FontAwesome;
+    content: "\f0e9";
+    color: #29ABE2;
+    margin-right: 7px;
+  }
+}
+
+header {
+  position: fixed;
+  top: 0;
+  height: 34px;
+  z-index: 3;
+  width: 100%;
+  background-color: $mainColor;
+  text-align: center;
+  box-shadow: 0px 3px 4px 0px rgba(0,0,0,0.3);
+  padding: 10px;
+  svg {
+    path {
+      fill:#fff;
+    }
+  }
+  .open_menu {
+    color: #fff;
+    position: absolute;
+    right: 34px;
+    top: 9px;
+    font-size: 24px;
+  }
+}
+
+.slideMenu{
+  position: fixed;
+  top: 0;
+  right: -250px;
+  z-index: 6;
+  width: 210px;
+  height: 100%;
+  background-color: #fff;
+  text-align: center;
+  overflow: auto;
+  padding: 15px;
+  .menuTop {
+    margin-bottom: 30px;
+    @extend %cf;
+    svg {
+      float: left;
+    }
+    .close_menu {
+      font-size: 24px;
+      float: right;
+      color: $mainColor;
+    }
+  }
+
+  .menuBottom {
+    width: 210px;
+    position: absolute;
+    bottom: 40px;
+    @extend %cf;
+    p {
+      @extend %weightBold;
+      font-size: 10px;
+      color: #ccc;
+      float: left;
+      margin-top: 40px
+    }
+    img {
+      float: right;
+    }
+  }
+  ul {
+    @extend %weightBold;
+    font-size: 14px;
+    text-align: left;
+    li {
+      margin-bottom: 30px;
+      i {
+        margin-right: 15px;
+      }
+      a {
+        &:hover {
+          color: $mainColor;
+        }
+      }
+    }
+  }
+}
+.shade{
+    position: fixed;
+    top: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: #333;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.bottomNav {
+  @extend %cf;
+  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.3);
+  background-color: #fff;
+  color: $mainColor;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  li {
+    width: 33%;
+    float: left;
+    text-align: center;
+    font-size: 11px;
+    padding: 10px 0 8px;
+    i {
+      font-size: 18px;
+    }
+  }
+}
+
+.mainV {
+  div {
+    width: 100%;
+    height: 120px;
+    background-color: #DCDDDD;
+  }
+}
+
+section {
+  padding: 10px 10px 0;
+}
+
+article {
+  padding:54px 0;
+  h1 {
+    @extend %weightBold;
+    background-color: #006629;
+    color: #fff;
+    font-size: 18px;
+    padding: 15px 10px;
+    span {
+      font-size: 14px;
+    }
+  }
+}
+
+/*==================================
+  scorebook
+==================================*/
+.scoreList {
+  @extend %cf;
+  margin: 20px 0 0 0;
+  position: relative;
+  li {
+    width: 100%;
+    height: 80px;
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    position: relative;
+    box-shadow: $btnShadow;
+    .score {
+      @extend %score;
+    }
+    .loundDisp {
+      margin: 0 0 0 15px;;
+      float: left;
+      .date {
+        color: #333;
+        @extend %weightBold;
+      }
+      h2 {
+        color: $mainColor;
+        font-size: 15px;
+        margin: 2px 0;
+        @extend %weightBold;
+        line-height: 1.3em;
+      }
+      .hdcp {
+        color: #999;
+      }
+    }
+    .weather {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+  }
+}
+
+#pagination {
+  width: 100%;
+  margin: 10px 0 20px;
+  font-size: 13px;
+  color: #fff;
+  position: relative;
+  @extend %cf;
+  a {
+    display: block;
+    width: 96px;
+    height: 12px;
+    padding: 6px 0 14px;
+    text-align: center;
+    background-color: $mainColor;
+    box-shadow: $btnShadow;
+    color: #fff;
+    &.previous {
+      float: left;
+      i {
+        margin-right: 10px;
+      }
+    }
+    &.next {
+      float: right;
+      i {
+        margin-left: 10px;
+      }
+    }
+    &.disabled {
+      background-color: #E6E6E6;
+      color: #999;
+    }
+  }
+  p {
+    position: absolute;
+    font-size: 14px;
+    color: #000;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 45px;
+    height: 23px;
+  }
+}
+
+/*==================================
+  score card
+==================================*/
+
+.table {
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  margin-bottom: 25px;
+  strong {
+    color: #006629;
+    @extend %weightBold;
+    width: 75px;
+    display: inline-block;
+  }
+  h2 {
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+    padding: 0 0 4px 0;
+    strong {
+      color: #000;
+      width: auto;
+    }
+    &.headline {
+      padding: 0 0 5px 10px;
+      text-align: left;
+      font-size: 18px;
+      @extend %weightBold;
+    }
+  }
+  .inner {
+    @extend %cf;
+    border: 1px solid #ccc;
+    > div {
+      background-color: #fff;
+      padding: 7px 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      span {
+        + span {
+          margin-left: 20px;;
+        }
+      }
+    }
+    p {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+  }
+  .lound {
+    width: 40%;
+    float: left;
+  }
+  .weather {
+    width: 60%;
+    float: left;
+    strong {
+      width: 50px;
+    }
+  }
+  .tee {
+    clear: both;
+  }
+  .score {
+    font-size: 14px;
+    color: #006629;
+    padding: 10px 20px;
+    text-align: center;
+    ul {
+      @extend %cf;
+      width: 245px;
+      margin: 0 auto;
+      padding: 0 0 0 15px;
+    }
+    li {
+      float: left;
+      line-height: 35px;
+      text-align: center;
+      .num {
+        font-size: 32px;
+        color: #000;
+      }
+      + li {
+        margin-left: 30px;
+      }
+    }
+    .out,.in {
+      padding: 10px 0 0 0;
+    }
+    .total {
+      @extend %score;
+      width: 100px;
+      height: 88px;
+      border-radius: 50px;
+      font-size: 16px;
+      padding-top: 12px;
+      color: #fff;
+      .num {
+        font-size: 40px;
+        color: #fff;
+        @extend %weightBold;
+      }
+    }
+  }
+  .hdcp {
+    @extend %weightBold;
+    font-size: 26px;
+    color: #000;
+    text-align: center;
+    span {
+      color: #006629;
+      font-size: 14px;
+      margin-right: 15px;
+      @extend %weightNormal;
+      vertical-align: middle;
+    }
+  }
+}
+
+table {
+  border: 1px solid #ccc;
+  width: 100%;
+  font-size: 14px;
+  text-align: center;
+  tr {
+    @extend %weightBold;
+    th {
+      border: 1px solid #ccc;
+      font-size: 10px;
+      color: #006629;
+    }
+    td {
+      border: 1px solid #ccc;
+      width: 9%;
+      height: 28px;
+    }
+  }
+  .hole {
+    background-color: #006629;
+    padding: 5px 0;
+    color: #fff;
+    th {
+      color: #fff;
+    }
+  }
+  .par {
+    background-color: #F2F2F2;
+    td {
+      color: #808080;
+    }
+  }
+  .scoreT {
+    background-color: #fff;
+    td {
+      color: #000;
+      @extend %weightBold;
+    }
+  }
+  .putt {
+    background-color: #fff;
+  }
+  .track {
+    width: 22%;
+    a {
+      color: #fff;
+      font-size: 12px;
+      display: block;
+      background-color: $mainColor;
+      padding: 7px 10px;
+      margin: 5px;
+      box-shadow: $btnShadow;
+    }
+  }
+}
+
+.courseTable {
+  th {
+    padding: 7px 0;
+  }
+  td {
+    font-size: 21px;
+  }
+  .scoreT {
+    color: $mainColor;
+  }
+}
+
+.eval {
+  @extend %cf;
+  border: 1px solid #ccc;
+  > li {
+    @extend %cf;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    float: left;
+    .star {
+      float: right;
+      li {
+        color: #CCCCCC;
+        float: left;
+        &.action {
+          color: #FCC500;
+        }
+      }
+    }
+  }
+}
